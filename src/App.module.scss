@@ -1,0 +1,106 @@
+.app {
+    width: 100vw;
+    max-width: var(--screen-xl);
+    min-width: fit-content;
+    padding: 2rem 0;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    user-select: none;
+    margin: 0;
+    margin-bottom: max(min(6rem, 10vh), 2rem);
+    font-size: min(6vw, 3.2rem);
+    letter-spacing: .3rem;
+
+    text-shadow: 0 0 10px var(--blue), 0 0 20px var(--blue),
+        0 0 40px var(--blue), 0 0 80px var(--blue);
+
+    .span {
+        color: var(--highlight-color);
+    }
+}
+
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes gradientRotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
+
+.container {
+    // colors
+    --clr-1: #6f04d9;
+    --clr-2: #1b0273;
+    --clr-3: #3866f2;
+    --clr-4: #0597f2;
+    --clr-5: #05c7f2;
+
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    width: calc(100% - 3rem);
+    max-width: var(--screen-md);
+    aspect-ratio: 1.6 / 1;
+
+    background: var(--secondary);
+    border-radius: 0.5rem;
+
+    position: relative;
+    
+    &::after {
+        filter: blur(2.5rem);
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        border-radius: inherit;
+        inset: -0.5rem;
+        z-index: -1;
+        background: conic-gradient(
+            from var(--gradient-angle),
+            var(--clr-1),
+            var(--clr-3),
+            var(--clr-4),
+            var(--clr-5),
+            var(--clr-3),
+            var(--clr-1)
+        );
+        animation: gradientRotation 20s linear infinite;
+    }
+}
+
+.control-container {
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary-bg), var(--secondary));
+}
+
+.button-container {
+    padding: 4rem 0;
+}
+
+.game-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}

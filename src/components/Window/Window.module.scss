@@ -1,0 +1,51 @@
+.window {
+    z-index: 9999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: fit-content;
+    background: linear-gradient(145deg, var(--secondary), var(--blue));
+    color: var(--white);
+    border: 2px solid var(--highlight-color);
+    border-radius: 0 0 1.6rem 0;
+    box-shadow: 2px 2px 4px var(--blue), 2px 2px 8px var(--blue);
+    opacity: 0.9;
+}
+
+.title-bar {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(145deg, var(--primary-bg), var(--secondary));
+    padding: 1rem;
+}
+
+.buttons .button {
+    cursor: pointer;
+    font-size: 120%;
+
+    &:hover {
+        color: var(--highlight-color);
+    }
+}
+
+.content {
+    user-select: none;
+    min-height: 100px;
+    width: 100%;
+    border-radius: inherit;
+
+    position: relative;
+
+    > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 200%;
+        color: #d2b48c;
+    }
+}

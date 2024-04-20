@@ -1,0 +1,114 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    --radial-menu-min-size: 200px;
+    --item-size: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    min-width: var(--radial-menu-min-size);
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    .toggle {
+        width: max(calc(var(--item-size) + 20px), 20%);
+        aspect-ratio: 1 / 1;
+
+        background-color: var(--secondary);
+        color: var(--white);
+        border: 2px solid var(--highlight-color);
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        cursor: pointer;
+        transition: 0.5s;
+
+        position: absolute;
+
+        &:hover {
+            background-color: var(--highlight-color);
+            color: var(--secondary);
+            box-shadow: 0 0 5px var(--highlight-color),
+                0 0 25px var(--highlight-color), 0 0 50px var(--highlight-color),
+                0 0 200px var(--highlight-color);
+        }
+
+        .icon {
+            font-size: 200%;
+        }
+    }
+
+    li {
+        --menu-radius: 100px;
+
+        list-style: none;
+
+        position: absolute;
+        left: 0;
+
+        transform-origin: var(--menu-radius);
+        transform: rotate(0deg)
+            translateX(calc(var(--menu-radius) - var(--item-size) / 2));
+
+        transition: 0.5s;
+        transition-delay: calc(0.1s * var(--i));
+
+        & > div {
+            user-select: none;
+            background-color: var(--highlight-color);
+            color: var(--secondary);
+            
+            width: var(--item-size);
+            height: var(--item-size);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            transform: rotate(calc(360deg / (-1 * var(--total)) * var(--i)));
+            cursor: pointer;
+            transition: 0.5s;
+
+            &:hover {
+                background-color: var(--secondary);
+                color: var(--highlight-color);
+                box-shadow: 0 0 5px var(--highlight-color),
+                    0 0 25px var(--highlight-color),
+                    0 0 50px var(--highlight-color),
+                    0 0 200px var(--highlight-color);
+            }
+
+            * {
+                // font-size: 120%;
+                font-weight: bold;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+.active .toggle {
+    transform: rotate(315deg);
+}
+
+.active li {
+    transform: rotate(calc(360deg / var(--total) * var(--i)));
+}
+
+.active .chosen > * {
+    box-shadow: 0 0 5px var(--highlight-color), 0 0 25px var(--highlight-color),
+        0 0 50px var(--highlight-color), 0 0 200px var(--highlight-color);
+}
